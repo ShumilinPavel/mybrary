@@ -9,7 +9,8 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 const indexRouter = require('./routes/index')
-const authorsRouter = require('./routes/authors')
+const authorRouter = require('./routes/authors')
+const bookRouter = require('./routes/books')
 
 const app = express()
 app.set('view engine', 'ejs')
@@ -28,6 +29,7 @@ db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
 app.use('/', indexRouter)
-app.use('/authors', authorsRouter)
+app.use('/authors', authorRouter)
+app.use('/books', bookRouter)
 
 app.listen(process.env.PORT || 3000)
